@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Duke {
     private static ArrayList<Task> texts = new ArrayList();
@@ -43,9 +45,11 @@ public class Duke {
                 else if (splitter1[0].equals("deadline")) {
                     String D = myString.substring(9); // after 9 letters
                     String[] splitterD = D.split("/by ");
-                    Task deadline = new Deadline(splitterD[0], splitterD[1]);
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                    LocalDateTime formatDateTime = LocalDateTime.parse(splitterD[1], formatter);
+                    Task deadline = new Deadline(splitterD[0], formatDateTime.format(formatter));
                     texts.add(deadline);
-                    addTaskToFile("[D][✗] " + splitterD[0] + " (at: " + splitterD[1] + ")");
+                    addTaskToFile("[D][✗] " + splitterD[0] + " (at: " + formatDateTime.format(formatter) + ")");
                     int l = lineCounter();
                     System.out.println("Got it. I've added this task:\n  " + texts.get(texts.size() - 1).toString());
                     System.out.println("Now you have " + l + " task(s) in the list.");
@@ -55,9 +59,12 @@ public class Duke {
                 else if (splitter1[0].equals("event")) {
                     String E = myString.substring(6); // after 6 letters
                     String[] splitterE = E.split("/at ");
-                    Task event = new Event(splitterE[0], splitterE[1]);
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                    LocalDateTime formatDateTime = LocalDateTime.parse(splitterE[1], formatter);
+                    Task deadline = new Deadline(splitterE[0], formatDateTime.format(formatter));
+                    Task event = new Event(splitterE[0], formatDateTime.format(formatter));
                     texts.add(event);
-                    addTaskToFile("[E][✗] " + splitterE[0] + " (at: " + splitterE[1] + ")");
+                    addTaskToFile("[E][✗] " + splitterE[0] + " (at: " + formatDateTime.format(formatter) + ")");
                     int l = lineCounter();
                     System.out.println("Got it. I've added this task:\n  " + texts.get(texts.size() - 1).toString());
                     System.out.println("Now you have " + l + " task(s) in the list.");
