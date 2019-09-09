@@ -1,4 +1,2 @@
 T | false | nothing
 E | true | birthday | 2019/11/05 1800
-D | false | essay | 2019/10/14 1300
-D | false | eat fruits | 2019/09/01 0700

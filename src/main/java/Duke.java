@@ -35,6 +35,17 @@ public class Duke {
                     throw new DukeExceptions("☹ OOPS!!! The description of a " + myString + " cannot be empty.");
                 }
 
+                //command is delete
+                else if (splitter1[0].equals("delete")){
+                    int taskNumber = Integer.parseInt(splitter1[1]);
+                    System.out.println("Noted. I've removed this task:");
+                    System.out.println("\t" + texts.get(taskNumber-1).toString());
+                    texts.remove(taskNumber-1);
+                    System.out.println("Now you have " + texts.size() + " tasks in the list.");
+                    save(texts);
+
+                }
+
                 //command is list
                 else if (myString.equals("list")) {
                     System.out.println("Here are the tasks in your list:");
@@ -49,7 +60,7 @@ public class Duke {
                     int taskNumber = Integer.parseInt(splitter1[1]);
                     texts.get(taskNumber - 1).setDone();
                     System.out.println("Nice! I've marked this task as done:");
-                    System.out.println("\t" + texts.get(taskNumber-1).getDescription());
+                    System.out.println("\t" + texts.get(taskNumber-1).toString());
                     save(texts);
                 }
 
