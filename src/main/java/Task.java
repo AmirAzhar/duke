@@ -25,6 +25,13 @@ public class Task {
         return description;
     }
 
+    public boolean contains(String string) {
+        if (this.description.contains(string))
+            return true;
+        else
+            return false;
+    }
+
     @Override
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + this.description;
