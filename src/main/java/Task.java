@@ -1,3 +1,5 @@
+package main.java;
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -11,8 +13,16 @@ public class Task {
         return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
     }
 
-    public void setDone(){
+    public void setDone() {
         this.isDone = true;
+    }
+
+    public String getFormat(){
+        return "x";
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     @Override
