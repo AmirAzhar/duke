@@ -60,7 +60,9 @@ public class Duke {
                     listInputs.remove(0);
                     String description = String.join(" ", listInputs);
                     String[] dayInput = description.split(" /by ");
-                    Deadline newDeadline = new Deadline("1", dayInput[0], dayInput[1]);
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
+                    LocalDateTime formatDateTime = LocalDateTime.parse(dayInput[1], formatter);
+                    Deadline newDeadline = new Deadline("1", dayInput[0], formatDateTime.format(formatter));
                     System.out.println("Got it. I've added this task: ");
                     System.out.println("\t" + "[D]" + "[✗] " + dayInput[0] + " (by: " + dayInput[1] + ")");
                     texts.add(newDeadline);
@@ -75,7 +77,9 @@ public class Duke {
                     listInputs.remove(0);
                     String description = String.join(" ", listInputs);
                     String[] dayInput = description.split(" /at ");
-                    Event newEvent = new Event("1", dayInput[0], dayInput[1]);
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
+                    LocalDateTime formatDateTime = LocalDateTime.parse(dayInput[1], formatter);
+                    Event newEvent = new Event("1", dayInput[0], formatDateTime.format(formatter));
                     System.out.println("Got it. I've added this task: ");
                     System.out.println("\t" + "[E]" + "[✗] " + dayInput[0] + " (at: " + dayInput[1] + ")");
                     texts.add(newEvent);
