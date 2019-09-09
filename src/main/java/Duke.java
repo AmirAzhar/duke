@@ -55,6 +55,19 @@ public class Duke {
                     }
                 }
 
+                //command is find
+                else if (splitter1[0].equals("find")){
+                    int counter = 0;
+                    String findThis = splitter1[1];
+                    System.out.println("Here are the matching tasks in your list:");
+                    for (int i=0; i < texts.size(); i++){
+                        if(texts.get(i).contains(findThis)) {
+                            counter++;
+                            System.out.println(counter + ". " + texts.get(i).toString());
+                        }
+                    }
+                }
+
                 //command is done
                 else if (splitter1[0].equals("done")) {
                     int taskNumber = Integer.parseInt(splitter1[1]);
