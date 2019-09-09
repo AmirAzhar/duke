@@ -43,7 +43,6 @@ public class Duke {
                     texts.remove(taskNumber-1);
                     System.out.println("Now you have " + texts.size() + " tasks in the list.");
                     save(texts);
-
                 }
 
                 //command is list
