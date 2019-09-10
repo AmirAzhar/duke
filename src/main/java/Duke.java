@@ -1,6 +1,10 @@
 package main.java;
 
-import main.java.*;
+import main.java.Exceptions.DukeExceptions;
+import main.java.Types.Deadline;
+import main.java.Types.Event;
+import main.java.Types.Task;
+import main.java.Types.ToDos;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -13,11 +17,14 @@ import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import static main.java.Storage.Storage.save;
+import static main.java.Storage.Storage.update;
+
 public class Duke {
     private static ArrayList<Task> texts = new ArrayList<>();
     public static void main(String[] args) throws IOException {
 
-        update();
+        update(texts);
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
 
         Scanner scanner = new Scanner(System.in);
@@ -139,34 +146,4 @@ public class Duke {
         System.out.println("Bye. Hope to see you again soon!");
     }
 
-    public static void save(ArrayList<Task> arr) {
-        File file = new File("C:\\Users\\itoot\\Desktop\\duke\\src\\main\\dukeData.txt");
-        try {
-            PrintWriter output = new PrintWriter(file);
-            for (Task x : arr) {
-                output.println(x.getFormat());
-            }
-            output.close();
-        } catch (IOException ex) {
-            System.out.print("ERROR: Not Available");
-        }
-    }
-
-    public static void update() throws FileNotFoundException {
-        File fileToRead = new File("C:\\Users\\itoot\\Desktop\\duke\\src\\main\\dukeData.txt");
-        Scanner scan_file = new Scanner(fileToRead);
-        while (scan_file.hasNextLine()) {
-            String line = scan_file.nextLine();
-            String[] splitStr = line.split(" \\| ");
-            if(splitStr[0].equals("T"))
-                texts.add(new ToDos(splitStr[1], splitStr[2]));
-            else if(splitStr[0].equals("E"))
-                texts.add(new Event(splitStr[1], splitStr[2], splitStr[3]));
-            else if(splitStr[0].equals("D"))
-                texts.add(new Deadline(splitStr[1], splitStr[2], splitStr[3]));
-            else
-                texts.add(new Task(splitStr[1]));
-
-        }
-    }
 }

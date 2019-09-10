@@ -1,13 +1,13 @@
-package main.java;
+package main.java.Types;
 
 public class Deadline extends Task {
 
     protected String by;
 
-    public Deadline(String description, String by) {
-        super(description);
-        this.by = by;
-    }
+//    public Deadline(String description, String by) {
+//        super(description);
+//        this.by = by;
+//    }
 
     public Deadline(String i, String description, String by) {
         super(description);

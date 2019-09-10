@@ -1,13 +1,13 @@
-package main.java;
+package main.java.Types;
 
 public class Event extends Task {
 
     protected String at;
 
-    public Event(String description, String at) {
-        super(description);
-        this.at = at;
-    }
+//    public Event(String description, String at) {
+//        super(description);
+//        this.at = at;
+//    }
 
     public Event (String i, String description, String at) {
         super(description);
